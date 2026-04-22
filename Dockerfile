@@ -4,11 +4,9 @@ WORKDIR /app
 
 COPY . .
 
-# Give permission to mvnw
 RUN chmod +x mvnw
 
-# Build jar
 RUN ./mvnw clean package -DskipTests
 
-# Run application
-ENTRYPOINT ["java","-jar","target/*.jar"]
+# FIX HERE 👇 (use shell form)
+ENTRYPOINT sh -c "java -jar target/*.jar"
