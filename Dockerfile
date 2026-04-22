@@ -2,6 +2,11 @@ FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
-COPY target/*.jar app.jar
+# Copy full project
+COPY . .
 
-ENTRYPOINT ["java","-jar","app.jar"]
+# Build jar inside container
+RUN ./mvnw clean package -DskipTests
+
+# Run jar
+ENTRYPOINT ["java","-jar","target/*.jar"]
